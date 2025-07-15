@@ -27,4 +27,6 @@ public:
   virtual LogLevel getLogLevel() const = 0;
 };
 
+std::unique_ptr<ILogger> createFileLogger(const std::string &filename,
+                                          LogLevel level = LogLevel::INFO);
 #endif // LOGGER_H
