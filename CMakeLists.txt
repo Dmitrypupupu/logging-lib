@@ -4,23 +4,19 @@ project(logging_lib)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Добавляем библиотеку с явным указанием всех исходников
 add_library(logging_lib STATIC
     src/file_logger.cpp
     include/logger.h
 )
 
-# Указываем, что include - публичная директория для заголовков
 target_include_directories(logging_lib PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-# Создаем исполняемый файл
 add_executable(logging_example
     example/main.cpp
 )
 
-# Связываем с библиотекой
 target_link_libraries(logging_example
     logging_lib
 )
