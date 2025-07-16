@@ -4,29 +4,25 @@
 #include <memory>
 #include <string>
 
-// Енум уровней важности сообщений
 enum class LogLevel {
-  DEBUG,   // Отладочные сообщения
-  INFO,    // Информационные сообщения
-  WARNING, // Предупреждения
-  ERROR    // Ошибки
+    DEBUG,
+    INFO,
+    WARNING,
+    ERROR
 };
 
 class ILogger {
 public:
-  virtual ~ILogger() = default;
+    virtual ~ILogger() = default;
 
-  // Запись сообщения в журнал
-  virtual void log(const std::string &message,
-                   LogLevel level = LogLevel::INFO) = 0;
+    virtual bool log(const std::string& message,
+                    LogLevel level = LogLevel::INFO) = 0;
 
-  // Установка уровня логирования
-  virtual void setLogLevel(LogLevel level) = 0;
-
-  // Получение текущего уровня логирования
-  virtual LogLevel getLogLevel() const = 0;
+    virtual void setLogLevel(LogLevel level) = 0;
+    virtual LogLevel getLogLevel() const = 0;
 };
 
-std::unique_ptr<ILogger> createFileLogger(const std::string &filename,
-                                          LogLevel level = LogLevel::INFO);
+std::unique_ptr<ILogger> createFileLogger(const std::string& filename,
+                                        LogLevel level = LogLevel::INFO);
+
 #endif // LOGGER_H
