@@ -24,7 +24,7 @@ void logWorker(std::unique_ptr<ILogger> logger) {
     std::unique_lock<std::mutex> lock(queueMutex);
 
     // Ожидаем сообщение или сигнал завершения
-    queue.wait(lock, ShouldWakeWorker);
+    queueCV.wait(lock, ShouldWakeWorker);
 
     // Проверка условия выхода
     if (exitFlag.load() && logQueue.empty())
@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
 
   while (true) {
     std::string input;
-    std::getlive(std::cin, input);
+    std::getline(std::cin, input);
 
     if (input == "exit") {
       exitFlag.store(true);
