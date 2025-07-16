@@ -5,7 +5,10 @@ int main() {
     try {
         // Создаем логгер
         auto logger = createFileLogger("application.log", LogLevel::DEBUG);
-        
+        if (!logger) {
+            std::cerr << "Не удалось создать логгер" << std::endl;
+            return 1;
+        }
         // Логируем сообщения разных уровней
         logger->log("Приложение запущено");
         logger->log("Отладочная информация", LogLevel::DEBUG);
