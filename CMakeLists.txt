@@ -6,20 +6,23 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(logging_lib STATIC
     src/file_logger.cpp
-    include/logger.h
 )
 
 target_include_directories(logging_lib PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-add_executable(logging_example
+find_package(Threads REQUIRED)
+target_link_libraries(logging_lib PUBLIC Threads::Threads)
+
+add_executable(logger_example
     example/main.cpp
 )
 
-target_link_libraries(logging_example
+target_link_libraries(logger_example
     logging_lib
 )
 
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
-set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
+if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/test/CMakeLists.txt)
+    add_subdirectory(test)
+endif()
