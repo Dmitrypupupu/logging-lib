@@ -42,7 +42,7 @@ void logWorker(std::unique_ptr<ILogger> logger) {
 
 int main(int argc, char *argv[]) {
   std::string logFile = "app.log";
-  LogLevel defaultLogLevel = logLevel::INFO;
+  LogLevel defaultLogLevel = LogLevel::INFO;
 
   for (int i = 0; i < argc; i++) {
     std::string arg = argv[i];
