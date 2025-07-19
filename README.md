@@ -18,16 +18,17 @@
 
 #  Структура проекта
 
-```text
-project/
-├── 📄 CMakeLists.txt          #  Конфигурация сборки
-├── 📁 include/
-│   └── 📄 logger.h            #  Интерфейс логгера (заголовочный файл)
-├── 📁 src/
-│   └── 📄 file_logger.cpp     #  Реализация файлового логгера
-├── 📁 example/
-│   └── 📄 main.cpp            #  Пример использования
-└── 📁 tests/                  #  Тесты 
+```file-logger/
+├── CMakeLists.txt         # Конфигурация сборки
+├── include/
+│   └── logger.h           # Интерфейс логгера
+├── src/
+│   └── file_logger.cpp    # Реализация
+├── example/
+│   └── main.cpp           # Пример использования
+└── tests/
+    ├── CMakeLists.txt     # Конфиг тестов
+    └── logger_test.cpp    # Юнит-тесты
 ```
 ## 🚀 Быстрый старт
 
@@ -38,3 +39,11 @@ mkdir build && cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
 make
 ```
+
+### Запуск тестов
+
+```# Из папки build:
+ctest --output-on-failure -V
+
+# Или напрямую:
+./tests/logger_tests```
